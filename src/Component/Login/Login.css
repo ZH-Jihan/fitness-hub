@@ -1,0 +1,25 @@
+.or-border {
+  border: 1px solid #ff000026;
+  width: 188px;
+}
+.icon {
+  /* background-color: rgb(26, 71, 218); */
+  border-radius: 30px;
+  border: 1px solid #ee4036;
+}
+.icon i {
+  font-size: 25px;
+  color: #ee4036;
+  padding: 5px;
+}
+.login-btn {
+  padding: 2px 50px;
+  background-color: #0d6efd;
+  color: white;
+  font-size: 20px;
+  font-family: inherit;
+}
+.login-btn:hover {
+  color: white;
+  background-color: #0001f1b8;
+}
