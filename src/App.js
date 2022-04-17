@@ -2,7 +2,9 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Footer from './Component/Footer/Footer';
 import Home from './Component/Home/Home/Home';
+import Login from './Component/Login/Login';
 import Navbar from './Component/Nevbar/Navbar';
+import SingUp from './Component/SingUp/SingUp';
 
 function App() {
   return (
@@ -11,6 +13,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
+        <Route path='/singup' element={<SingUp></SingUp>}></Route>
+        <Route path='/login' element={<Login></Login>}></Route>
       </Routes>
       <Footer></Footer>
     </div>

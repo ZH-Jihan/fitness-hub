@@ -1,10 +1,15 @@
 .card-body {
   padding: 0px;
+  font-family: ui-monospace;
+}
+.card {
+  padding: 0px 20px;
 }
 .bg-footer {
   background-color: #262626;
   color: white;
-  padding: 40px 0px;
+  padding: 80px 0px 30px 0px;
+  margin: 20px 0px;
 }
 .footer-conteinar {
   width: 80%;
@@ -13,7 +18,7 @@
 .start-btn {
   border: 2px solid #ee4036;
   color: #ee4036;
-  margin: 35px 0px;
+  margin: 35px 0px 20px 0px;
   border-radius: 0%;
 }
 .start-btn:hover {
@@ -26,10 +31,13 @@
 }
 .footer-des h6 {
   padding-top: 25px;
+  font-size: 20px;
+  font-weight: bolder;
 }
 .footer-des a {
   text-decoration: none;
   color: #ee4036;
+  padding: 5px 3px;
 }
 .dev-link {
   text-decoration: none;
@@ -39,4 +47,7 @@
 }
 .dev-link:hover {
   color: #ee3f36a6;
+}
+.socile {
+  padding: 30px 0px;
 }
