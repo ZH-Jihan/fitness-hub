@@ -1,0 +1,42 @@
+.card-body {
+  padding: 0px;
+}
+.bg-footer {
+  background-color: #262626;
+  color: white;
+  padding: 40px 0px;
+}
+.footer-conteinar {
+  width: 80%;
+  margin: auto;
+}
+.start-btn {
+  border: 2px solid #ee4036;
+  color: #ee4036;
+  margin: 35px 0px;
+  border-radius: 0%;
+}
+.start-btn:hover {
+  background-color: #ee4036;
+  color: white;
+  transition: 0.5s;
+}
+.footer-des {
+  color: #969696;
+}
+.footer-des h6 {
+  padding-top: 25px;
+}
+.footer-des a {
+  text-decoration: none;
+  color: #ee4036;
+}
+.dev-link {
+  text-decoration: none;
+  color: #ee4036;
+  border-bottom: 0.5px solid #ee4036;
+  padding: 3px;
+}
+.dev-link:hover {
+  color: #ee3f36a6;
+}
