@@ -1,0 +1,69 @@
+.bg {
+  background: #9e9e9e30;
+}
+.navbar {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  width: 90%;
+  margin: auto;
+}
+.nav-logo {
+  width: 200px;
+  height: 75px;
+}
+.navbar .link {
+  text-decoration: none;
+  font-size: 18px;
+  margin: 10px;
+  padding: 10px;
+  display: inline-block;
+  text-transform: uppercase;
+  color: black;
+  font-weight: 700;
+  border-bottom: 3px solid rgba(130, 130, 137, 0.41);
+  font-family: Georgia, Times, "Times New Roman", serif;
+}
+.navbar .link1 {
+  text-decoration: none;
+  font-size: 18px;
+  margin: 10px;
+  padding: 10px;
+  display: inline-block;
+  text-transform: uppercase;
+  color: black;
+  font-weight: 700;
+  font-family: Georgia, Times, "Times New Roman", serif;
+  border: 1px solid silver;
+  border-radius: 30px;
+  background: aliceblue;
+}
+.navbar .active-link {
+  text-decoration: none;
+  font-size: 18px;
+  margin: 10px;
+  padding: 10px;
+  display: inline-block;
+  text-transform: uppercase;
+  color: rgb(255 0 0);
+  font-weight: 700;
+  border-bottom: 3px solid rgb(255 0 0);
+}
+.navbar .active-link1 {
+  text-decoration: none;
+  font-size: 18px;
+  margin: 10px;
+  padding: 10px;
+  display: inline-block;
+  text-transform: uppercase;
+  color: rgb(255 0 0);
+  font-weight: 700;
+  border: 1px solid silver;
+  border-radius: 30px;
+  background: aliceblue;
+}
+.navbar-brand {
+  font-size: 2.25rem;
+}
+.navbar-nav {
+  margin: 0px;
+}
