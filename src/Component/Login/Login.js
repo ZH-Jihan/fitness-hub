@@ -1,11 +1,26 @@
 import React from "react";
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { Navigate } from "react-router-dom";
 import auth from '../../firebase.init';
 import img from "../../Image/draw2.webp";
 import './Login.css';
 
 const Login = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  
+  if (error) {
+    return (
+      <div>
+        <p>Error: {error.message}</p>
+      </div>
+    );
+  }
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (user) {
+    <Navigate to="/home" replace={true} />
+  };
   return (
     <section >
       <div className="container-fluid h-custom my-5">
@@ -99,9 +114,7 @@ const Login = () => {
                   type="button"
                   className="btn login-btn btn-lg"
                   style={{ paddingleft: "2.5rem", paddingright: "2.5rem" }}
-                >
-                  Login
-                </button>
+                >LogIn</button>
                 <p className="small fw-bold mt-2 pt-1 mb-0">
                   Don't have an account?{" "}
                   <a href="#!" className="link-danger">
