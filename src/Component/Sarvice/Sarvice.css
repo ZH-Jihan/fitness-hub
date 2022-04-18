@@ -1,0 +1,24 @@
+.card {
+  box-shadow: 2px 2px 30px lightsteelblue;
+  height: 530px;
+  border-radius: 10px;
+  position: relative;
+  margin-top: 30px;
+}
+.card img {
+  height: 200px;
+  /* border-radius: 40%; */
+  margin: 10px auto;
+  width: 100%;
+}
+.card-rating {
+  position: absolute;
+  bottom: 20px;
+  padding-top: 15px;
+}
+.card-text {
+  font-size: 18px;
+}
+.booking-btn {
+  border: none;
+}

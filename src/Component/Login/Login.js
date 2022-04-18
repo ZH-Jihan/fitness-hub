@@ -16,23 +16,18 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  let from = location.state?.from?.pathname || "/";
+  let from = location.state?.from?.pathname;
   let errorElement;
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
-//   if (loading || sending) {
-//     return <Loading></Loading>;
-//   }
-
   if (user) {
     navigate(from, { replace: true });
   }
 
   if (error) {
-    // errorElement = <p className="text-danger">Error: {error?.message}</p>;
     toast(error?.message)
   }
 
