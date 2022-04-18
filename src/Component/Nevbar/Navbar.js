@@ -77,7 +77,7 @@ const Navbar = () => {
                 </NavLink>
               </li>
               
-            <div class="d-flex px-5 mx-5">
+            <div className="d-flex px-5 mx-5">
               <ul className="navbar-nav  mb-2 mb-lg-0">
                 <li className="nav-item">
                   <NavLink

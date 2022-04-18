@@ -1,147 +1,59 @@
-import React from "react";
+import React, { useState } from 'react';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
+import Loading from '../Loading/Loading';
+import SocialLogin from '../Socile/Socile';
 
 const SingUp = () => {
-  return (
-    <div>
-      <div
-        className="px-4 py-5 px-md-5 text-center text-lg-start"
-        style={{ background: "hsl(0, 0%, 96%)" }}
-      >
-        <div className="container">
-          <div className="row gx-lg-5 align-items-center">
-            <div className="col-lg-6 mb-5 mb-lg-0">
-              <h1 className="my-5 display-3 fw-bold ls-tight">
-                The best offer <br />
-                <span className="text-primary">for your business</span>
-              </h1>
-              <p style={{ color: "hsl(217, 10%, 50.8%)" }}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Eveniet, itaque accusantium odio, soluta, corrupti aliquam
-                quibusdam tempora at cupiditate quis eum maiores libero
-                veritatis? Dicta facilis sint aliquid ipsum atque?
-              </p>
-            </div>
+    const [agree, setAgree] = useState(false);
+    const [createUserWithEmailAndPassword,user,loading,error] =useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-            <div className="col-lg-6 mb-5 mb-lg-0">
-              <div className="card">
-                <div className="card-body py-5 px-md-5">
-                  <form>
-                    {/* <!-- 2 column grid layout with text inputs for the first and last names --> */}
-                    <div className="row">
-                      <div className="col-md-6 mb-4">
-                        <div className="form-outline">
-                          <input
-                            type="text"
-                            id="form3Example1"
-                            className="form-control"
-                          />
-                          <label className="form-label" for="form3Example1">
-                            First name
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-6 mb-4">
-                        <div className="form-outline">
-                          <input
-                            type="text"
-                            id="form3Example2"
-                            className="form-control"
-                          />
-                          <label className="form-label" for="form3Example2">
-                            Last name
-                          </label>
-                        </div>
-                      </div>
-                    </div>
+    const navigate = useNavigate();
+    const navigateLogin = () => {
+        navigate('/login');
+    }
 
-                    {/* <!-- Email input --> */}
+    if(loading || updating){
+        return <Loading></Loading>
+    }
 
-                    <div className="form-outline mb-4">
-                      <input
-                        type="email"
-                        id="form3Example3"
-                        className="form-control"
-                      />
-                      <label className="form-label" for="form3Example3">
-                        Email address
-                      </label>
-                    </div>
+    if (user) {
+     console.log('user', user);  
+    }
 
-                    {/* <!-- Password input --> */}
+    const handleRegister = async (event) => {
+        event.preventDefault();
+        const name = event.target.name.value;
+        const email = event.target.email.value;
+        const password = event.target.password.value;
 
-                    <div className="form-outline mb-4">
-                      <input
-                        type="password"
-                        id="form3Example4"
-                        className="form-control"
-                      />
-                      <label className="form-label" for="form3Example4">
-                        Password
-                      </label>
-                    </div>
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName: name });
+        console.log('Updated profile');
+        navigate('/home');
+    }
 
-                    {/* <!-- Checkbox --> */}
-
-                    <div className="form-check d-flex justify-content-center mb-4">
-                      <input
-                        className="form-check-input me-2"
-                        type="checkbox"
-                        value=""
-                        id="form2Example33"
-                        checked
-                      />
-                      <label className="form-check-label" for="form2Example33">
-                        Subscribe to our newsletter
-                      </label>
-                    </div>
-
-                    {/* Submit button */}
-
-                    <button
-                      type="submit"
-                      className="btn btn-primary btn-block mb-4"
-                    >
-                      Sign up
-                    </button>
-                    <div className="text-center">
-                      <p>or sign up with:</p>
-                      <button
-                        type="button"
-                        className="btn btn-link btn-floating mx-1"
-                      >
-                        <i className="fab fa-facebook-f"></i>
-                      </button>
-
-                      <button
-                        type="button"
-                        className="btn btn-link btn-floating mx-1"
-                      >
-                        <i className="fab fa-google"></i>
-                      </button>
-
-                      <button
-                        type="button"
-                        className="btn btn-link btn-floating mx-1"
-                      >
-                        <i className="fab fa-twitter"></i>
-                      </button>
-
-                      <button
-                        type="button"
-                        className="btn btn-link btn-floating mx-1"
-                      >
-                        <i className="fab fa-github"></i>
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
+    return (
+        <div className='register-form'>
+            <h2 style={{ textAlign: 'center' }}>Please Register</h2>
+            <form onSubmit={handleRegister}>
+                <input type="text" name="name" id="" placeholder='Your Name' />
+                <input type="email" name="email" id="" placeholder='Email Address' required />
+                <input type="password" name="password" id="" placeholder='Password' required />
+                <input onClick={() => setAgree(!agree)} type="checkbox" name="terms" id="terms" />
+                <label className={`ps-2 ${agree ? '' : 'text-danger'}`} for="terms">Accept Genius Car Terms and Conditions</label>
+                <input
+                    disabled={!agree}
+                    className='w-50 mx-auto btn btn-primary mt-2'
+                    type="submit"
+                    value="Register" />
+            </form>
+            <p>Already have an account? <Link to="/login" className='text-primary pe-auto text-decoration-none'>Please Login</Link> </p>
+            <SocialLogin></SocialLogin>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default SingUp;

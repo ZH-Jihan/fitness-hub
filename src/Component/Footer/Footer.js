@@ -5,23 +5,23 @@ const Footer = () => {
   return (
     <div className="bg-footer">
       <div className="footer-conteinar">
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="card border-0 bg-transparent">
-              <div class="card-body">
-                <h2 class="card-title">
+        <div className="row">
+          <div className="col-sm-6">
+            <div className="card border-0 bg-transparent">
+              <div className="card-body">
+                <h2 className="card-title">
                   You'll never know your limits unless you push yourself to
                   them.
                 </h2>
-                <a href="#" class="btn start-btn">
+                <a href="#" className="btn start-btn">
                   START NOW
                 </a>
               </div>
             </div>
           </div>
-          <div class="col-sm-6 footer-des">
-            <div class="card border-0 bg-transparent">
-              <div class="card-body">
+          <div className="col-sm-6 footer-des">
+            <div className="card border-0 bg-transparent">
+              <div className="card-body">
                 <a href="#" className="dev-link">@avwilliamson</a>
                 <h6>Aaron Williamson</h6>
                 <p>

@@ -1,151 +1,129 @@
 import React, { useRef } from "react";
 import {
-  useSendPasswordResetEmail,
-  useSignInWithEmailAndPassword,
-  useSignInWithFacebook,
-  useSignInWithGithub,
-  useSignInWithGoogle
+    useSendPasswordResetEmail,
+    useSignInWithEmailAndPassword
 } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import auth from "../../firebase.init";
-import img from "../../Image/draw2.webp";
-import "./Login.css";
+import Sociale from "../Socile/Socile";
+import './Login.css';
 
 const Login = () => {
-  const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
-  const [signInWithGithub, gituser, gitloading, giterror] =useSignInWithGithub(auth);
-  const [signInWithFacebook, fbuser, fbloading, fberror] =useSignInWithFacebook(auth);
-  const [signInWithEmailAndPassword, user, loading, error] =useSignInWithEmailAndPassword(auth);
-  const [sendPasswordResetEmail, sending, sederror] =useSendPasswordResetEmail(auth);
-
+  const emailRef = useRef("");
   const passwordRef = useRef("");
-  const emailRef= useRef("");
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleSubmit = event =>{
+  let from = location.state?.from?.pathname || "/";
+  let errorElement;
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+
+//   if (loading || sending) {
+//     return <Loading></Loading>;
+//   }
+
+  if (user) {
+    navigate(from, { replace: true });
+  }
+
+  if (error) {
+    // errorElement = <p className="text-danger">Error: {error?.message}</p>;
+    toast(error?.message)
+  }
+
+  const handleSubmit = (event) => {
     event.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    signInWithEmailAndPassword(email,password)
-    
-  }
+    signInWithEmailAndPassword(email, password);
+  };
 
-  const navigate = useNavigate();
-  let eroreliment;
-  if (error || giterror || fberror || gerror) {
-    eroreliment = (
-      <div>
-        <p className="text-danger">Error: {error?.message || giterror?.message || fberror?.message || gerror?.message}</p>
-      </div>
-    );
-  }
-  if (loading || gitloading || fbloading || gloading) {
-    <p>Loading...</p>;
-  }
-  if (user || gituser || fbuser || guser) {
-    navigate("/home");
-  }
+  const resetPassword = async () => {
+    const email = emailRef.current.value;
+    if (email) {
+      await sendPasswordResetEmail(email);
+      toast("Sent email");
+    } else {
+      toast("please enter your email address");
+    }
+  };
+
   return (
-    <section>
-      <div className="container-fluid h-custom my-5">
+    <section className="my-5">
+      <div className="container-fluid h-custom">
         <div className="row d-flex justify-content-center align-items-center h-100">
-          <div className="col-md-9 col-lg-6 col-xl-5 py-3">
-            <img src={img} alt="" srcset="" className="img-fluid" />
+          <div className="col-md-9 col-lg-6 col-xl-5 py-2">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+              className="img-fluid"
+              alt=""
+            />
           </div>
-          <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1 py-3">
+          <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
             <form>
-              <div className="d-flex flex-row align-items-center justify-content-center ">
-                <p className="lead fw-normal mb-0 me-3">Sign in with</p>
-                <button
-                  type="button"
-                  className="btn icon btn-floating mx-1"
-                  onClick={() => signInWithFacebook()}
-                >
-                  <i className="fab fa-facebook-f"></i>
-                </button>
-
-                <button
-                  type="button"
-                  className="btn icon btn-floating mx-1"
-                  onClick={() => signInWithGoogle()}
-                >
-                  <i className="fab fa-google"></i>
-                </button>
-
-                <button
-                  type="button"
-                  className="btn icon btn-floating mx-1"
-                  onClick={() => signInWithGithub()}
-                >
-                  <i className="fab fa-github"></i>
-                </button>
-              </div>
-
+              <Sociale></Sociale>
               <div className="divider d-flex align-items-center my-4">
                 <div className="or-border"></div>
-                <p className="text-center justify-content-center  fw-bold mx-3 mb-0">
-                  Or
-                </p>
+                <p className="text-center fw-bold mx-3 mb-0">Or</p>
                 <div className="or-border"></div>
               </div>
-
-              {/* Email input */}
+              <div className="form-outline mb-4">
                 <input
                   ref={emailRef}
                   type="email"
-                  name="Email"
-                  className="form-control form-control-lg mb-4"
+                  className="form-control form-control-lg"
                   placeholder="Enter a valid email address"
-                  required 
+                  required
                 />
-              {/* <Password input  */}
-                <input ref={passwordRef} type="password"
-                  className="form-control form-control-lg mb-4"
+                <label className="form-label" for="form3Example3">
+                  Email address
+                </label>
+              </div>
+              <div className="form-outline mb-3">
+                <input
+                  ref={passwordRef}
+                  type="password"
+                  className="form-control form-control-lg"
                   placeholder="Enter password"
-                  required 
+                  required
                 />
-              {eroreliment}
+                <label className="form-label" for="form3Example4">
+                  Password
+                </label>
+              </div>
+                {errorElement}
               <div className="d-flex justify-content-between align-items-center">
-                {/* Checkbox  */}
                 <div className="form-check mb-0">
                   <input
                     className="form-check-input me-2"
                     type="checkbox"
                     value=""
-                    id="form2Example3"
                   />
                   <label className="form-check-label" for="form2Example3">
                     Remember me
                   </label>
                 </div>
-                <a
-                  onClick={async () => {
-                    const email = emailRef.current.value;
-                    await sendPasswordResetEmail(email);
-                    alert("Sent email");
-                  }}
-                  href="#!"
-                  className="link-danger"
-                >
+                <Link to='' onClick={resetPassword} className="link-danger pe-auto text-decoration-none fw-bold">
                   Forgot password?
-                </a>
+                </Link>
               </div>
-
-              <div className="text-center  mt-4 pt-2">
-                <button
-                  type="button"
-                  className="btn login-btn btn-lg"
-                  style={{ paddingleft: "2.5rem", paddingright: "2.5rem" }}
-                  onClick={handleSubmit}
-                >
-                  LogIn
+              <div className="text-center mt-4 pt-2">
+                <button type="submit" onClick={handleSubmit}  className="btn login-btn btn-lg">
+                  Login
                 </button>
                 <p className="small fw-bold mt-2 pt-1 mb-0">
                   Don't have an account?{" "}
-                  <Link to="/singup" className="link-danger">
+                  <Link to='/singup' className="link-danger">
                     Register
                   </Link>
                 </p>
+                <ToastContainer></ToastContainer>
               </div>
             </form>
           </div>
