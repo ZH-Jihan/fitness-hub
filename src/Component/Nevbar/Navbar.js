@@ -4,6 +4,7 @@ import logo from "../../Image/AW_logo-01-01.png";
 import "./Navbar.css";
 
 const Navbar = () => {
+  
   return (
     <div className="bg">
       <nav className="sticky-top navbar navbar-expand-lg navbar-light ">

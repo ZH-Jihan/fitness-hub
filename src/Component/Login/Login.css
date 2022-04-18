@@ -3,14 +3,12 @@
   width: 188px;
 }
 .icon {
-  /* background-color: rgb(26, 71, 218); */
-  border-radius: 30px;
-  border: 1px solid #ee4036;
+  background-color: rgb(0 63 222 / 75%);
+  border-radius: 20px;
 }
 .icon i {
-  font-size: 25px;
-  color: #ee4036;
-  padding: 5px;
+  font-size: 15px;
+  color: #ffffff;
 }
 .login-btn {
   padding: 2px 50px;

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import {
-    useSendPasswordResetEmail,
-    useSignInWithEmailAndPassword
+  useSendPasswordResetEmail,
+  useSignInWithEmailAndPassword
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
@@ -66,7 +66,7 @@ const Login = () => {
             />
           </div>
           <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-            <form>
+            <form onSubmit={handleSubmit}>
               <Sociale></Sociale>
               <div className="divider d-flex align-items-center my-4">
                 <div className="or-border"></div>
@@ -114,7 +114,7 @@ const Login = () => {
                 </Link>
               </div>
               <div className="text-center mt-4 pt-2">
-                <button type="submit" onClick={handleSubmit}  className="btn login-btn btn-lg">
+                <button type="submit"   className="btn login-btn btn-lg">
                   Login
                 </button>
                 <p className="small fw-bold mt-2 pt-1 mb-0">
