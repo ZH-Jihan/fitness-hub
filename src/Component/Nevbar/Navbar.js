@@ -48,7 +48,7 @@ const Navbar = () => {
                   className={({ isActive }) =>
                     isActive ? "active-link" : "link"
                   }
-                  href='home#traning'
+                  href='/home#traning'
                 >
                   Traning
                 </a>
@@ -61,16 +61,6 @@ const Navbar = () => {
                   to="/blogs"
                 >
                   Blogs
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "active-link" : "link"
-                  }
-                  to="/dashbord"
-                >
-                  Dashbord
                 </NavLink>
               </li>
               <li className="nav-item">
