@@ -8,8 +8,6 @@ const Blogs = () => {
         <div class="card-header text-center fw-bolder fs-1">Qus & Ans</div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
-            <h4>
-            </h4>
           </li>
           <li class="list-group-item">
             
